@@ -1,13 +1,36 @@
+
+
 import {Todo} from './todo';
+import * as express from 'express';
+import * as bodyParser from 'body-parser';
 
-const todo:Todo = new Todo();
+const todo = new Todo();
+const app = express();
 
-todo.ajouter('ga');
-todo.ajouter('zo');
-todo.ajouter('bu');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended:true
+}));
 
-console.log(todo.lister());
+const router = express.Router();
 
-todo.supprimer('ga');
+// router permettant de recuperer les todos
+router.get('/', (req, res) => {
+    res.json(todo.lister())
+});
 
-console.log(todo.lister());
+// router permettant d'ajouter un todo
+    router.post('/', (req, res) => {
+        let nouveau = req.body.nouveau;
+        todo.ajouter(nouveau);
+        res.end('todo ajouté');
+});
+        // router qui permets d'effacer un todo
+router.delete('/', (req, res) => {
+    let suppr = req.body.suppr;
+    todo.supprimer(suppr);
+    res.end('todo supprimé');
+});
+
+app.use('/todo', router);
+app.listen(3000);
