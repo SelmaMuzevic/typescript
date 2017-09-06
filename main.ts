@@ -32,5 +32,6 @@ router.delete('/', (req, res) => {
     res.end('todo supprimé');
 });
 
+// on appel le serveur sur port 3000 
 app.use('/todo', router);
 app.listen(3000);
