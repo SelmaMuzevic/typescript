@@ -25,13 +25,17 @@ router.get('/', (req, res) => {
         todo.ajouter(nouveau);
         res.end('todo ajouté');
 });
-        // router qui permets d'effacer un todo
-router.delete('/', (req, res) => {
-    let suppr = req.body.suppr;
+
+// router qui permets d'effacer un todo
+router.delete('/:suppr', (req, res) => {
+    let suppr = req.params.suppr;
     todo.supprimer(suppr);
     res.end('todo supprimé');
 });
 
-// on appel le serveur sur port 3000 
+// on dit a l'application d'utiliser notre routeur sur 
+// le chemin /todo 
+// toutes les routes definies dedans devrons donc etre 
+// precedees de /todo
 app.use('/todo', router);
 app.listen(3000);
