@@ -1,7 +1,11 @@
-import { AnimalCompagnie } from "./petit-interface";
+import { AnimalCompagnie } from "./animal-compagnie";
+import { Savable } from "./savable";
 
 
-export class Chat implements AnimalCompagnie {
+export class Chat implements AnimalCompagnie, Savable {
+    getInfos(): string {
+        return 'Chat:nom='+this.nom+';couleur='+this.couleur;
+    }
     //ceci equivaut
     constructor(public nom:string,public couleur:string){}
     /*
