@@ -1,6 +1,7 @@
 
 
 import { AnimalCompagnie } from "./interfaces/animal-compagnie";
+import { Saver} from "./interfaces/saver";
 import { Chien } from "./interfaces/chien";
 import { Chat } from "./interfaces/chat";
 
